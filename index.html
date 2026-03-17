@@ -165,31 +165,31 @@ body{font-family:'Nunito',sans-serif;overflow:hidden;width:100vw;height:100vh;us
 
 <!-- Nav -->
 <div id="nav">
-<button class="nb a" onclick="sTab('home')" id="t-home"><span class="ni">🏠</span><span class="nl">Ana</span></button>
-<button class="nb" onclick="sTab('market')" id="t-market"><span class="ni">🍽️</span><span class="nl">Besle</span></button>
-<button class="nb" onclick="sTab('games')" id="t-games"><span class="ni">🎮</span><span class="nl">Oyna</span></button>
-<button class="nb" onclick="sTab('shop')" id="t-shop"><span class="ni">💎</span><span class="nl">Mağaza</span></button>
-<button class="nb" onclick="sTab('style')" id="t-style"><span class="ni">👔</span><span class="nl">Giysi</span></button>
-<button class="nb" onclick="sTab('more')" id="t-more"><span class="ni">⚙️</span><span class="nl">Diğer</span></button>
+<button class="nb a" onclick="sTab('home')" id="t-home"><span class="ni">🏠</span><span class="nl" data-t="home">Ana</span></button>
+<button class="nb" onclick="sTab('market')" id="t-market"><span class="ni">🍽️</span><span class="nl" data-t="feed">Besle</span></button>
+<button class="nb" onclick="sTab('games')" id="t-games"><span class="ni">🎮</span><span class="nl" data-t="play">Oyna</span></button>
+<button class="nb" onclick="sTab('shop')" id="t-shop"><span class="ni">💎</span><span class="nl" data-t="shop">Mağaza</span></button>
+<button class="nb" onclick="sTab('style')" id="t-style"><span class="ni">👔</span><span class="nl" data-t="outfit">Giysi</span></button>
+<button class="nb" onclick="sTab('more')" id="t-more"><span class="ni">⚙️</span><span class="nl" data-t="more">Diğer</span></button>
 </div>
 
 <!-- Panels -->
-<div class="pn" id="p-market"><div class="pc"><div class="ph"><div class="phd"></div><div class="pt">🍽️ Besle</div></div><div class="pb"><div class="mg" id="mkt"></div></div></div></div>
+<div class="pn" id="p-market"><div class="pc"><div class="ph"><div class="phd"></div><div class="pt" data-t="market_t">🍽️ Besle</div></div><div class="pb"><div class="mg" id="mkt"></div></div></div></div>
 
-<div class="pn" id="p-games"><div class="pc"><div class="ph"><div class="phd"></div><div class="pt">🎮 Mini Oyunlar</div></div><div class="pb" id="games-list"></div></div></div>
+<div class="pn" id="p-games"><div class="pc"><div class="ph"><div class="phd"></div><div class="pt" data-t="games_t">🎮 Mini Oyunlar</div></div><div class="pb" id="games-list"></div></div></div>
 
-<div class="pn" id="p-style"><div class="pc"><div class="ph"><div class="phd"></div><div class="pt">👔 Kıyafetler</div></div><div class="pb" id="style-content"></div></div></div>
+<div class="pn" id="p-style"><div class="pc"><div class="ph"><div class="phd"></div><div class="pt" data-t="style_t">👔 Kıyafetler</div></div><div class="pb" id="style-content"></div></div></div>
 
-<div class="pn" id="p-more"><div class="pc"><div class="ph"><div class="phd"></div><div class="pt">⚙️ Diğer</div></div><div class="pb" id="more-content"></div></div></div>
+<div class="pn" id="p-more"><div class="pc"><div class="ph"><div class="phd"></div><div class="pt" data-t="more_t">⚙️ Diğer</div></div><div class="pb" id="more-content"></div></div></div>
 
-<div class="pn" id="p-quest"><div class="pc"><div class="ph"><div class="phd"></div><div class="pt">📋 Görevler</div></div><div class="pb" id="quest-g"></div></div></div>
+<div class="pn" id="p-quest"><div class="pc"><div class="ph"><div class="phd"></div><div class="pt" data-t="quest_t">📋 Görevler</div></div><div class="pb" id="quest-g"></div></div></div>
 
-<div class="pn" id="p-med"><div class="pc"><div class="ph"><div class="phd"></div><div class="pt">💊 İlaçlar</div></div><div class="pb"><div class="mg" id="med-g"></div></div></div></div>
+<div class="pn" id="p-med"><div class="pc"><div class="ph"><div class="phd"></div><div class="pt" data-t="med_t">💊 İlaçlar</div></div><div class="pb"><div class="mg" id="med-g"></div></div></div></div>
 
-<div class="pn" id="p-decor"><div class="pc"><div class="ph"><div class="phd"></div><div class="pt">🏡 Dekorasyon</div></div><div class="pb"><div class="mg" id="decor-g"></div></div></div></div>
+<div class="pn" id="p-decor"><div class="pc"><div class="ph"><div class="phd"></div><div class="pt" data-t="decor_t">🏡 Dekorasyon</div></div><div class="pb"><div class="mg" id="decor-g"></div></div></div></div>
 
 <!-- Premium Shop Panel -->
-<div class="pn" id="p-shop"><div class="pc"><div class="ph"><div class="phd"></div><div class="pt">💎 Premium Mağaza</div></div><div class="pb" id="shop-content"></div></div></div>
+<div class="pn" id="p-shop"><div class="pc"><div class="ph"><div class="phd"></div><div class="pt" data-t="shop_t">💎 Premium Mağaza</div></div><div class="pb" id="shop-content"></div></div></div>
 
 <!-- Ad Simulation Overlay (Rewarded) -->
 <div id="ad-ov" style="position:fixed;top:0;left:0;right:0;bottom:0;z-index:700;background:rgba(0,0,0,0.95);display:none;flex-direction:column;justify-content:center;align-items:center;gap:12px">
@@ -248,14 +248,41 @@ const T={tr:{hunger:'Açlık',happy:'Mutluluk',energy:'Enerji',health:'Sağlık'
 eating:'Mmm lezzetli!',love:'Seni seviyorum!',happy_s:'Mutluyum!',sad:'Bana baksana...',tired:'Uykum var...',hungry:'Acıktım...',dirty:'Banyo!',scared:'Yardım!',hug:'*sarılıyor*',bored:'Sıkıldım...',sick_s:'Karnım ağrıyor...',
 no_coin:'Coin yetmiyor!',daily_ok:'Ödül alındı!',daily_no:'Yarın gel!',equipped:'Giyildi!',purchased:'Alındı!',grew:'Punch büyüdü!',
 bully_inst:'Kurtar! Hızlı dokun!',bully_win:'Kurtuldu! 🎉',bully_lose:'Yaralandı 😢',
-q_feed3:'3 kez besle',q_play1:'1 oyun oyna',q_pet5:'5 kez sev',q_bath:'Banyo yaptır',q_daily:'Günlük al'},
+q_feed3:'3 kez besle',q_play1:'1 oyun oyna',q_pet5:'5 kez sev',q_bath:'Banyo yaptır',q_daily:'Günlük al',
+home:'Ana',feed:'Besle',play:'Oyna',shop:'Mağaza',outfit:'Giysi',more:'Diğer',
+market_t:'🍽️ Besle',games_t:'🎮 Mini Oyunlar',style_t:'👔 Kıyafetler',more_t:'⚙️ Diğer',
+quest_t:'📋 Görevler',med_t:'💊 İlaçlar',decor_t:'🏡 Dekorasyon',shop_t:'💎 Premium Mağaza',
+sleep:'Uyut',bath:'Banyo',quests:'Görevler',decor:'Dekorasyon',medicine:'İlaç',wake:'Uyandır',
+head_slot:'Kafa',top_slot:'Üst',bottom_slot:'Alt'},
 en:{hunger:'Hunger',happy:'Happy',energy:'Energy',health:'Health',clean:'Clean',daily:'Daily',sick:'Sick',
 eating:'Yummy!',love:'Love you!',happy_s:'Happy!',sad:'Look at me...',tired:'Sleepy...',hungry:'Hungry...',dirty:'Bath!',scared:'Help!',hug:'*hugging*',bored:'Bored...',sick_s:'Tummy hurts...',
 no_coin:'No coins!',daily_ok:'Claimed!',daily_no:'Tomorrow!',equipped:'Equipped!',purchased:'Purchased!',grew:'Punch grew!',
 bully_inst:'Save! Tap fast!',bully_win:'Safe! 🎉',bully_lose:'Hurt 😢',
-q_feed3:'Feed 3x',q_play1:'Play 1 game',q_pet5:'Pet 5x',q_bath:'Give bath',q_daily:'Claim daily'}};
+q_feed3:'Feed 3x',q_play1:'Play 1 game',q_pet5:'Pet 5x',q_bath:'Give bath',q_daily:'Claim daily',
+home:'Home',feed:'Feed',play:'Play',shop:'Shop',outfit:'Outfit',more:'More',
+market_t:'🍽️ Feed Punch',games_t:'🎮 Mini Games',style_t:'👔 Outfits',more_t:'⚙️ More',
+quest_t:'📋 Quests',med_t:'💊 Medicine',decor_t:'🏡 Decoration',shop_t:'💎 Premium Shop',
+sleep:'Sleep',bath:'Bath',quests:'Quests',decor:'Decoration',medicine:'Medicine',wake:'Wake Up',
+head_slot:'Head',top_slot:'Top',bottom_slot:'Bottom'}};
 function t(k){return(T[S.lang]||T.tr)[k]||k}
-function toggleLang(){S.lang=S.lang==='tr'?'en':'tr';document.querySelectorAll('[data-t]').forEach(e=>e.textContent=t(e.dataset.t))}
+function tl(){return S.tl()}
+function nm(item){return tl()?item.tr:item.en}
+function toggleLang(){
+  S.lang=S.tl()?'en':'tr';
+  // Update all data-t elements
+  document.querySelectorAll('[data-t]').forEach(e=>e.textContent=t(e.dataset.t));
+  // Update growth badge
+  updHUD();
+  // Re-render any open panel
+  if(cTab==='market')renderMkt();
+  if(cTab==='games')renderGames();
+  if(cTab==='style')renderStyle();
+  if(cTab==='more')renderMore();
+  if(cTab==='quest')renderQuests();
+  if(cTab==='shop')renderShop();
+  if(cTab==='med')renderMeds();
+  if(cTab==='decor')renderDecor();
+}
 
 // ==================== FOODS ====================
 const FOODS=[
@@ -673,7 +700,7 @@ function updHUD(){
   document.getElementById('xpd').textContent=S.xp;
   document.getElementById('cod').textContent=S.coins;
   document.getElementById('lvl').textContent='Lv.'+S.level;
-  document.getElementById('grw').textContent=S.lang==='tr'?STAGES[S.stage].tr:STAGES[S.stage].en;
+  document.getElementById('grw').textContent=nm(STAGES[S.stage]);
   document.getElementById('sick-badge').classList.toggle('s',S.sick);
 }
 
@@ -707,13 +734,13 @@ function renderMkt(){
   // Drag target hint
   const hint=document.createElement('div');
   hint.style.cssText='text-align:center;padding:6px;font-family:Fredoka;font-size:11px;font-weight:600;color:#888;margin-bottom:4px';
-  hint.textContent=S.lang==='tr'?'🐒 Yemeği sürükleyip Punch\'a götür!':'🐒 Drag food to Punch!';
+  hint.textContent=t('drag_hint');
   g.appendChild(hint);
   // Ad for free food
   const adBtn=document.createElement('div');
   adBtn.className='fc';
   adBtn.style.cssText='display:flex;align-items:center;gap:8px;padding:8px 10px;margin-bottom:8px;background:linear-gradient(135deg,#FFF8E1,#FFF3E0);border-color:#FFB300;cursor:pointer';
-  adBtn.innerHTML=`<span style="font-size:22px">📺</span><div style="flex:1;font-size:11px;font-weight:700">${S.lang==='tr'?'Reklam İzle = Bedava Yemek!':'Watch Ad = Free Food!'}</div><div style="font-size:10px;font-weight:800;color:#FF6D00">🍖+25 😊+10</div>`;
+  adBtn.innerHTML=`<span style="font-size:22px">📺</span><div style="flex:1;font-size:11px;font-weight:700">${t('ad_free_food')}</div><div style="font-size:10px;font-weight:800;color:#FF6D00">🍖+25 😊+10</div>`;
   adBtn.onclick=()=>{
     document.getElementById('p-market').classList.remove('o');
     showRewardAd(0,()=>{S.hunger=Math.min(100,S.hunger+25);S.happy=Math.min(100,S.happy+10);updHUD();spch('eating');fp('🍕')});
@@ -723,7 +750,7 @@ function renderMkt(){
   FOODS.forEach(f=>{
     const ul=S.level>=f.lvl;
     const c=document.createElement('div');c.className='fc'+(ul?'':' lk');
-    c.innerHTML=`<span class="fe">${f.em}</span><div class="fn">${S.lang==='tr'?f.tr:f.en}</div><div class="fs">🍖${f.h} 😊${f.ha} ⚡${f.e}</div><div class="fco">🍌${f.c}${!ul?' 🔓Lv.'+f.lvl:''}</div>`;
+    c.innerHTML=`<span class="fe">${f.em}</span><div class="fn">${nm(f)}</div><div class="fs">🍖${f.h} 😊${f.ha} ⚡${f.e}</div><div class="fco">🍌${f.c}${!ul?' 🔓Lv.'+f.lvl:''}</div>`;
     if(ul){
       // Tap to feed (fallback)
       c.onclick=()=>doFeed(f);
@@ -781,7 +808,7 @@ function renderGames(){
   const g=document.getElementById('games-list');g.innerHTML='';
   GAMES.forEach(gm=>{
     const c=document.createElement('div');c.className='game-card';
-    c.innerHTML=`<div class="gc-em">${gm.em}</div><div class="gc-info"><div class="gc-name">${S.lang==='tr'?gm.tr:gm.en}</div><div class="gc-desc">${S.lang==='tr'?gm.desc_tr:gm.desc_en}</div></div>`;
+    c.innerHTML=`<div class="gc-em">${gm.em}</div><div class="gc-info"><div class="gc-name">${nm(gm)}</div><div class="gc-desc">${tl()?gm.desc_tr:gm.desc_en}</div></div>`;
     c.onclick=()=>{document.getElementById('p-games').classList.remove('o');launchGame(gm.id)};
     g.appendChild(c);
   });
@@ -793,8 +820,8 @@ function renderStyle(){
   ['head','top','bottom'].forEach(slot=>{
     const sec=document.createElement('div');sec.className='outfit-section';
     const icons={head:'🎩',top:'👕',bottom:'👖'};
-    const labels={head:{tr:'Kafa',en:'Head'},top:{tr:'Üst',en:'Top'},bottom:{tr:'Alt',en:'Bottom'}};
-    sec.innerHTML=`<div class="outfit-label">${icons[slot]} ${labels[slot][S.lang]}</div>`;
+    const labelKeys={head:'head_slot',top:'top_slot',bottom:'bottom_slot'};
+    sec.innerHTML=`<div class="outfit-label">${icons[slot]} ${t(labelKeys[slot])}</div>`;
     const grid=document.createElement('div');grid.className='og';
     OUTFITS[slot].forEach(o=>{
       const levelOk=S.level>=o.lvl;
@@ -802,7 +829,7 @@ function renderStyle(){
       const active=S.outfit[slot]===o.id;
       const canBuy=levelOk&&S.coins>=o.c;
       const c=document.createElement('div');c.className='oc'+(active?' a':'')+((!owned&&!canBuy)||!levelOk?' lk':'');
-      c.innerHTML=`<div class="oc-em">${o.em}</div><div class="oc-n">${S.lang==='tr'?o.tr:o.en}</div>${!levelOk?'<div class="oc-c">🔓Lv.'+o.lvl+'</div>':(!owned?'<div class="oc-c">🍌'+o.c+'</div>':(active?'<div class="oc-c">✅</div>':''))}`;
+      c.innerHTML=`<div class="oc-em">${o.em}</div><div class="oc-n">${nm(o)}</div>${!levelOk?'<div class="oc-c">🔓Lv.'+o.lvl+'</div>':(!owned?'<div class="oc-c">🍌'+o.c+'</div>':(active?'<div class="oc-c">✅</div>':''))}`;
       c.onclick=()=>{
         if(!levelOk){toast('🔓 Lv.'+o.lvl);return}
         if(owned){S.outfit[slot]=o.id;renderStyle();toast(t('equipped'))}
@@ -819,11 +846,11 @@ function renderStyle(){
 function renderMore(){
   const g=document.getElementById('more-content');
   g.innerHTML=`<div style="display:flex;flex-direction:column;gap:6px">
-  <button class="gbtn" onclick="goSleep()" style="width:100%">💤 ${S.lang==='tr'?'Uyut':'Sleep'}</button>
-  <button class="gbtn" onclick="goBath()" style="width:100%;background:linear-gradient(135deg,#4FC3F7,#0288D1)">🛁 ${S.lang==='tr'?'Banyo':'Bath'}</button>
-  ${S.sick?'<button class="gbtn" onclick="sTab(\'med\')" style="width:100%;background:linear-gradient(135deg,#EF5350,#C62828)">💊 '+(S.lang==='tr'?'İlaç':'Medicine')+'</button>':''}
-  <button class="gbtn" onclick="sTab('quest')" style="width:100%;background:linear-gradient(135deg,#AB47BC,#7B1FA2)">📋 ${S.lang==='tr'?'Görevler':'Quests'}</button>
-  <button class="gbtn" onclick="sTab('decor')" style="width:100%;background:linear-gradient(135deg,#66BB6A,#43A047)">🏡 ${S.lang==='tr'?'Dekorasyon':'Decoration'}</button>
+  <button class="gbtn" onclick="goSleep()" style="width:100%">💤 ${t('sleep')}</button>
+  <button class="gbtn" onclick="goBath()" style="width:100%;background:linear-gradient(135deg,#4FC3F7,#0288D1)">🛁 ${t('bath')}</button>
+  ${S.sick?'<button class="gbtn" onclick="sTab(\'med\')" style="width:100%;background:linear-gradient(135deg,#EF5350,#C62828)">💊 '+t('medicine')+'</button>':''}
+  <button class="gbtn" onclick="sTab('quest')" style="width:100%;background:linear-gradient(135deg,#AB47BC,#7B1FA2)">📋 ${t('quests')}</button>
+  <button class="gbtn" onclick="sTab('decor')" style="width:100%;background:linear-gradient(135deg,#66BB6A,#43A047)">🏡 ${t('decor')}</button>
   </div>`;
 }
 
@@ -832,7 +859,7 @@ function renderMeds(){
   const g=document.getElementById('med-g');g.innerHTML='';
   MEDS.forEach(m=>{
     const c=document.createElement('div');c.className='fc'+(S.coins<m.c?' lk':'');
-    c.innerHTML=`<span class="fe">${m.em}</span><div class="fn">${S.lang==='tr'?m.tr:m.en}</div><div class="fs">❤️+${m.heal}</div><div class="fco">🍌${m.c}</div>`;
+    c.innerHTML=`<span class="fe">${m.em}</span><div class="fn">${nm(m)}</div><div class="fs">❤️+${m.heal}</div><div class="fco">🍌${m.c}</div>`;
     c.onclick=()=>{
       if(S.coins<m.c){toast(t('no_coin'));return}
       S.coins-=m.c;S.health=Math.min(100,S.health+m.heal);
@@ -865,7 +892,7 @@ function renderDecor(){
   DECORITEMS.forEach(d=>{
     const levelOk=S.level>=d.lvl;
     const c=document.createElement('div');c.className='fc'+(!levelOk||(levelOk&&S.coins<d.c)?' lk':'');
-    c.innerHTML=`<span class="fe">${d.em}</span><div class="fn">${S.lang==='tr'?d.tr:d.en}</div><div class="fco">${!levelOk?'🔓Lv.'+d.lvl:'🍌'+d.c}</div>`;
+    c.innerHTML=`<span class="fe">${d.em}</span><div class="fn">${nm(d)}</div><div class="fco">${!levelOk?'🔓Lv.'+d.lvl:'🍌'+d.c}</div>`;
     c.onclick=()=>{
       if(!levelOk){toast('🔓 Lv.'+d.lvl);return}
       if(S.coins<d.c){toast(t('no_coin'));return}
@@ -920,7 +947,7 @@ function wakeUp(){
 
 // ==================== BATH (SPONGE DRAG) ====================
 function goBath(){
-  if(S.clean>90){toast(S.lang==='tr'?'Zaten temiz!':'Already clean!');return}
+  if(S.clean>90){toast(t('already_clean'));return}
   document.querySelectorAll('.pn').forEach(p=>p.classList.remove('o'));
   const ov=document.getElementById('bath');ov.classList.add('a');
   const bcv=document.getElementById('bath-cv');bcv.width=W;bcv.height=H;
@@ -999,7 +1026,7 @@ function goBath(){
       if(prog>=100){
         S.clean=100;S.happy=Math.min(100,S.happy+12);S.totalBath++;updHUD();
         doneBtn.style.display='block';
-        toast(S.lang==='tr'?'Tertemiz! ✨':'Clean! ✨');
+        toast(t('clean_done'));
       }
     }
   }
@@ -1047,10 +1074,10 @@ function exitGame(){
   const goDiv=document.createElement('div');
   goDiv.style.cssText='position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px;z-index:260';
   goDiv.innerHTML=`
-    <div style="font-family:Fredoka;font-size:24px;font-weight:700;color:#fff">🎮 ${S.lang==='tr'?'Oyun Bitti!':'Game Over!'}</div>
+    <div style="font-family:Fredoka;font-size:24px;font-weight:700;color:#fff">🎮 ${tl()?'Oyun Bitti!':'Game Over!'}</div>
     <div style="font-family:Fredoka;font-size:16px;color:#FFD700">🍌 ${coinsBase} coin + ⭐ ${gScore} XP</div>
-    <button onclick="this.parentElement.remove();document.getElementById('gfs').classList.remove('a')" style="background:rgba(255,255,255,0.2);color:#fff;border:1px solid rgba(255,255,255,0.3);padding:10px 28px;border-radius:12px;font-family:Fredoka;font-size:14px;font-weight:700;cursor:pointer;margin-top:8px">${S.lang==='tr'?'Tamam':'OK'}</button>
-    <button onclick="this.parentElement.remove();document.getElementById('gfs').classList.remove('a');showRewardAd(${coinsBase},null)" style="background:linear-gradient(135deg,#FFD700,#FFA000);color:#333;border:none;padding:10px 28px;border-radius:12px;font-family:Fredoka;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 3px 10px rgba(255,160,0,0.4)">📺 ${S.lang==='tr'?'Reklam İzle = 2x Coin!':'Watch Ad = 2x Coins!'} (+${coinsBase}🍌)</button>
+    <button onclick="this.parentElement.remove();document.getElementById('gfs').classList.remove('a')" style="background:rgba(255,255,255,0.2);color:#fff;border:1px solid rgba(255,255,255,0.3);padding:10px 28px;border-radius:12px;font-family:Fredoka;font-size:14px;font-weight:700;cursor:pointer;margin-top:8px">${tl()?'Tamam':'OK'}</button>
+    <button onclick="this.parentElement.remove();document.getElementById('gfs').classList.remove('a');showRewardAd(${coinsBase},null)" style="background:linear-gradient(135deg,#FFD700,#FFA000);color:#333;border:none;padding:10px 28px;border-radius:12px;font-family:Fredoka;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 3px 10px rgba(255,160,0,0.4)">📺 ${tl()?'Reklam İzle = 2x Coin!':'Watch Ad = 2x Coins!'} (+${coinsBase}🍌)</button>
   `;
   fs.appendChild(goDiv);
 }
@@ -1109,7 +1136,7 @@ function gameRunner(gc,gcv){
     gc.fillText((speed*10).toFixed(0)+' km/h',W*.12,H*.05);
     // Controls hint at start
     if(sp<120){gc.fillStyle='rgba(255,255,255,0.7)';gc.font='bold 14px Fredoka';gc.textAlign='center';
-      gc.fillText(S.lang==='tr'?'⬅️ Sol | Zıpla ⬆️ | Sağ ➡️':'⬅️ Left | Jump ⬆️ | Right ➡️',W*.5,H*.95)}
+      gc.fillText(tl()?'⬅️ Sol | Zıpla ⬆️ | Sağ ➡️':'⬅️ Left | Jump ⬆️ | Right ➡️',W*.5,H*.95)}
     sp++;
     // Gradual speed increase (much slower)
     speed=1.5+sp/1800;
@@ -1277,7 +1304,7 @@ function gameFlappy(gc,gcv){
     
     // Ready text
     if(!started){gc.fillStyle='rgba(255,255,255,0.8)';gc.font=`bold ${W*.05}px Fredoka`;
-      gc.fillText(S.lang==='tr'?'Dokun!':'Tap!',W*.5,H*.55)}
+      gc.fillText(tl()?'Dokun!':'Tap!',W*.5,H*.55)}
     
     gAnim=requestAnimationFrame(loop);
   }
@@ -1353,7 +1380,7 @@ function gameGoal(gc,gcv){
           goals++;gScore+=5;gCoins+=3;updGameHUD();
           toast('GOL! ⚽🎉');
         }else{
-          toast(S.lang==='tr'?'Kurtardı!':'Saved!');
+          toast(tl()?'Kurtardı!':'Saved!');
         }
         shotActive=false;shotBX=ballX;shotBY=ballY;
         if(shots>=5){gameOn=false;setTimeout(exitGame,800)}
@@ -1373,7 +1400,7 @@ function triggerBully(){
   const res=document.getElementById('br');
   const tim=document.getElementById('bt');
   res.textContent='';
-  inf.textContent=S.lang==='tr'?'🐒 Punch\'u sürükleyerek kurtar! Yeşil alana götür!':'🐒 Drag Punch to the safe zone!';
+  inf.textContent=tl()?'🐒 Punch\'u sürükleyerek kurtar! Yeşil alana götür!':'🐒 Drag Punch to the safe zone!';
   ov.classList.add('a');spch('scared');
   
   // Create drag canvas on bully overlay
@@ -1400,7 +1427,7 @@ function triggerBully(){
     bc.beginPath();bc.arc(safeX,safeY,safeR+pulse,0,Math.PI*2);bc.fill();
     bc.fillStyle='rgba(255,255,255,0.15)';
     bc.font='bold 14px Fredoka';bc.textAlign='center';
-    bc.fillText(S.lang==='tr'?'GÜVENLİ':'SAFE',safeX,safeY-safeR-8);
+    bc.fillText(tl()?'GÜVENLİ':'SAFE',safeX,safeY-safeR-8);
     bc.fillText('🏠',safeX,safeY);
     
     // Bully gorilla (menacing, moving)
@@ -1430,7 +1457,7 @@ function triggerBully(){
     const dx=punchDragX-safeX,dy=punchDragY-safeY;
     if(Math.sqrt(dx*dx+dy*dy)<safeR){
       saved=true;clearInterval(ti);
-      res.textContent=S.lang==='tr'?'Punch kurtuldu! 🎉':'Punch is safe! 🎉';
+      res.textContent=tl()?'Punch kurtuldu! 🎉':'Punch is safe! 🎉';
       S.coins+=12;S.xp+=20;S.happy=Math.min(100,S.happy+15);S.growthXP+=10;
       chkLvl();chkGrow();updHUD();fp('🎉');
       cleanupBully();
@@ -1449,7 +1476,7 @@ function triggerBully(){
     if(timeLeft<=0){
       clearInterval(ti);
       if(!saved){
-        res.textContent=S.lang==='tr'?'Punch yaralandı 😢':'Punch got hurt 😢';
+        res.textContent=tl()?'Punch yaralandı 😢':'Punch got hurt 😢';
         S.happy=Math.max(0,S.happy-25);S.health=Math.max(0,S.health-15);updHUD();
         cleanupBully();
       }
@@ -1487,23 +1514,23 @@ function chkLvl(){
     toast('🎉 Lv.'+S.level+' +'+reward+'🍌');
     fp('🌟');fp('🎉',W/2-30);
     // Unlock messages
-    if(S.level===3)toast(S.lang==='tr'?'Yeni yemekler açıldı!':'New foods unlocked!');
-    if(S.level===5)toast(S.lang==='tr'?'Yeni kostümler açıldı!':'New costumes unlocked!');
-    if(S.level===10)toast(S.lang==='tr'?'Süper! Bonus 50🍌':'Super! Bonus 50🍌');
+    if(S.level===3)toast(tl()?'Yeni yemekler açıldı!':'New foods unlocked!');
+    if(S.level===5)toast(tl()?'Yeni kostümler açıldı!':'New costumes unlocked!');
+    if(S.level===10)toast(tl()?'Süper! Bonus 50🍌':'Super! Bonus 50🍌');
     if(S.level===10)S.coins+=50;
   }
 }
 function chkGrow(){
   if(S.stage<3&&S.growthXP>=STAGES[S.stage+1].xp){
     S.stage++;updHUD();
-    const stageName=S.lang==='tr'?STAGES[S.stage].tr:STAGES[S.stage].en;
+    const stageName=nm(STAGES[S.stage]);
     toast(t('grew')+' '+stageName);
     fp('🎉');fp('⭐',W/2+30);
     // Growth rewards
     S.coins+=25;S.xp+=20;
-    if(S.stage===1)toast(S.lang==='tr'?'Daha hızlı koşabilir!':'Can run faster!');
-    if(S.stage===2)toast(S.lang==='tr'?'Mini oyunlarda +%50 coin!':'Mini games +50% coins!');
-    if(S.stage===3)toast(S.lang==='tr'?'Tüm yemekler açık!':'All foods unlocked!');
+    if(S.stage===1)toast(tl()?'Daha hızlı koşabilir!':'Can run faster!');
+    if(S.stage===2)toast(tl()?'Mini oyunlarda +%50 coin!':'Mini games +50% coins!');
+    if(S.stage===3)toast(tl()?'Tüm yemekler açık!':'All foods unlocked!');
   }
 }
 
@@ -1573,12 +1600,12 @@ function showInterstitial(){
   
   let wait=INT_AD_WAIT;
   const cd=document.getElementById('int-ad-countdown');
-  cd.textContent=S.lang==='tr'?`${wait} saniye sonra kapatılabilir`:`Close in ${wait}s`;
+  cd.textContent=S.tl()?`${wait} saniye sonra kapatılabilir`:`Close in ${wait}s`;
   
   const ti=setInterval(()=>{
     wait--;
     if(wait>0){
-      cd.textContent=S.lang==='tr'?`${wait} saniye sonra kapatılabilir`:`Close in ${wait}s`;
+      cd.textContent=S.tl()?`${wait} saniye sonra kapatılabilir`:`Close in ${wait}s`;
     }else{
       clearInterval(ti);
       cd.textContent='';
@@ -1620,20 +1647,19 @@ const SEASON_PASS={
 
 function renderShop(){
   const g=document.getElementById('shop-content');
-  const lang=S.lang;
   g.innerHTML='';
 
   // Free coins section
   const freeSection=document.createElement('div');
-  freeSection.innerHTML=`<div style="font-family:Fredoka;font-size:14px;font-weight:700;color:#333;margin-bottom:8px">🎬 ${lang==='tr'?'Ücretsiz Coin':'Free Coins'}</div>`;
+  freeSection.innerHTML=`<div style="font-family:Fredoka;font-size:14px;font-weight:700;color:#333;margin-bottom:8px">🎬 ${tl()?'Ücretsiz Coin':'Free Coins'}</div>`;
   
   // Watch ad for coins
   const adCard=document.createElement('div');
   adCard.className='fc';
   adCard.style.cssText='padding:12px;display:flex;align-items:center;gap:10px;cursor:pointer;margin-bottom:8px';
-  adCard.innerHTML=`<span style="font-size:28px">📺</span><div style="flex:1"><div style="font-size:12px;font-weight:700">${lang==='tr'?'Reklam İzle = 5 Coin':'Watch Ad = 5 Coins'}</div><div style="font-size:10px;color:#888">${lang==='tr'?'Günde 10 kez':'10x per day'} (${adsWatched}/10)</div></div><div style="font-size:10px;font-weight:800;color:#FF6D00">🍌+5</div>`;
+  adCard.innerHTML=`<span style="font-size:28px">📺</span><div style="flex:1"><div style="font-size:12px;font-weight:700">${tl()?'Reklam İzle = 5 Coin':'Watch Ad = 5 Coins'}</div><div style="font-size:10px;color:#888">${tl()?'Günde 10 kez':'10x per day'} (${adsWatched}/10)</div></div><div style="font-size:10px;font-weight:800;color:#FF6D00">🍌+5</div>`;
   adCard.onclick=()=>{
-    if(adsWatched>=10){toast(lang==='tr'?'Bugünlük limit doldu!':'Daily limit reached!');return}
+    if(adsWatched>=10){toast(tl()?'Bugünlük limit doldu!':'Daily limit reached!');return}
     showRewardAd(5,null);
   };
   freeSection.appendChild(adCard);
@@ -1642,9 +1668,9 @@ function renderShop(){
   const energyCard=document.createElement('div');
   energyCard.className='fc';
   energyCard.style.cssText='padding:12px;display:flex;align-items:center;gap:10px;cursor:pointer;margin-bottom:8px';
-  energyCard.innerHTML=`<span style="font-size:28px">⚡</span><div style="flex:1"><div style="font-size:12px;font-weight:700">${lang==='tr'?'Reklam İzle = Enerji Doldur':'Watch Ad = Full Energy'}</div><div style="font-size:10px;color:#888">${lang==='tr'?'Punch\'un enerjisini doldur':'Refill Punch\'s energy'}</div></div><div style="font-size:10px;font-weight:800;color:#4FC3F7">⚡100%</div>`;
+  energyCard.innerHTML=`<span style="font-size:28px">⚡</span><div style="flex:1"><div style="font-size:12px;font-weight:700">${tl()?'Reklam İzle = Enerji Doldur':'Watch Ad = Full Energy'}</div><div style="font-size:10px;color:#888">${tl()?'Punch\'un enerjisini doldur':'Refill Punch\'s energy'}</div></div><div style="font-size:10px;font-weight:800;color:#4FC3F7">⚡100%</div>`;
   energyCard.onclick=()=>{
-    showRewardAd(0,()=>{S.energy=100;updHUD();toast('⚡ '+( lang==='tr'?'Enerji doldu!':'Energy full!'))});
+    showRewardAd(0,()=>{S.energy=100;updHUD();toast('⚡ '+( tl()?'Enerji doldu!':'Energy full!'))});
   };
   freeSection.appendChild(energyCard);
 
@@ -1652,7 +1678,7 @@ function renderShop(){
   const foodCard=document.createElement('div');
   foodCard.className='fc';
   foodCard.style.cssText='padding:12px;display:flex;align-items:center;gap:10px;cursor:pointer;margin-bottom:12px';
-  foodCard.innerHTML=`<span style="font-size:28px">🍕</span><div style="flex:1"><div style="font-size:12px;font-weight:700">${lang==='tr'?'Reklam İzle = Ücretsiz Yemek':'Watch Ad = Free Food'}</div><div style="font-size:10px;color:#888">${lang==='tr'?'Punch\'u bedavaya doyur':'Feed Punch for free'}</div></div><div style="font-size:10px;font-weight:800;color:#66BB6A">🍖+25</div>`;
+  foodCard.innerHTML=`<span style="font-size:28px">🍕</span><div style="flex:1"><div style="font-size:12px;font-weight:700">${tl()?'Reklam İzle = Ücretsiz Yemek':'Watch Ad = Free Food'}</div><div style="font-size:10px;color:#888">${tl()?'Punch\'u bedavaya doyur':'Feed Punch for free'}</div></div><div style="font-size:10px;font-weight:800;color:#66BB6A">🍖+25</div>`;
   foodCard.onclick=()=>{
     showRewardAd(0,()=>{S.hunger=Math.min(100,S.hunger+25);S.happy=Math.min(100,S.happy+10);updHUD();spch('eating');fp('🍕')});
   };
@@ -1661,29 +1687,29 @@ function renderShop(){
 
   // Coin packs section
   const coinSection=document.createElement('div');
-  coinSection.innerHTML=`<div style="font-family:Fredoka;font-size:14px;font-weight:700;color:#333;margin:8px 0">🍌 ${lang==='tr'?'Coin Paketleri':'Coin Packs'}</div>`;
+  coinSection.innerHTML=`<div style="font-family:Fredoka;font-size:14px;font-weight:700;color:#333;margin:8px 0">🍌 ${tl()?'Coin Paketleri':'Coin Packs'}</div>`;
   const coinGrid=document.createElement('div');coinGrid.className='mg';
   SHOP_COINS.forEach(p=>{
     const c=document.createElement('div');c.className='fc';
     c.style.cssText=p.pop?'border-color:#FF6D00;background:#FFF8E1;position:relative':'';
-    c.innerHTML=`${p.pop?'<div style="position:absolute;top:-8px;right:-4px;background:#FF6D00;color:#fff;font-size:8px;font-weight:700;padding:2px 6px;border-radius:8px;font-family:Fredoka">'+(lang==='tr'?'POPÜLER':'POPULAR')+'</div>':''}<span class="fe">${p.em}</span><div class="fn">${p.coins} Coin</div><div class="fco" style="color:#333;background:#FFD700;padding:2px 8px;border-radius:8px;display:inline-block">${p.price}</div>`;
-    c.onclick=()=>toast(lang==='tr'?'Ödeme sistemi yakında!':'Payment coming soon!');
+    c.innerHTML=`${p.pop?'<div style="position:absolute;top:-8px;right:-4px;background:#FF6D00;color:#fff;font-size:8px;font-weight:700;padding:2px 6px;border-radius:8px;font-family:Fredoka">'+(tl()?'POPÜLER':'POPULAR')+'</div>':''}<span class="fe">${p.em}</span><div class="fn">${p.coins} Coin</div><div class="fco" style="color:#333;background:#FFD700;padding:2px 8px;border-radius:8px;display:inline-block">${p.price}</div>`;
+    c.onclick=()=>toast(tl()?'Ödeme sistemi yakında!':'Payment coming soon!');
     coinGrid.appendChild(c);
   });
   coinSection.appendChild(coinGrid);g.appendChild(coinSection);
 
   // Premium costumes section
   const premSection=document.createElement('div');
-  premSection.innerHTML=`<div style="font-family:Fredoka;font-size:14px;font-weight:700;color:#333;margin:12px 0 8px">✨ ${lang==='tr'?'Premium Kostümler':'Premium Costumes'} <span style="font-size:10px;color:#888">($0.99-2.99)</span></div>`;
+  premSection.innerHTML=`<div style="font-family:Fredoka;font-size:14px;font-weight:700;color:#333;margin:12px 0 8px">✨ ${tl()?'Premium Kostümler':'Premium Costumes'} <span style="font-size:10px;color:#888">($0.99-2.99)</span></div>`;
   const premGrid=document.createElement('div');premGrid.className='mg';
   PREMIUM_COSTUMES.forEach(p=>{
     const owned=S.ownedOutfits.includes(p.id);
     const c=document.createElement('div');c.className='fc';
     c.style.cssText=owned?'border-color:#66BB6A;background:#F1F8E9':'';
-    c.innerHTML=`<span class="fe">${p.em}</span><div class="fn">${lang==='tr'?p.tr:p.en}</div><div class="fco">${owned?'✅':'$0.99'}</div>`;
+    c.innerHTML=`<span class="fe">${p.em}</span><div class="fn">${tl()?p.tr:p.en}</div><div class="fco">${owned?'✅':'$0.99'}</div>`;
     c.onclick=()=>{
       if(owned){S.outfit[p.slot]=p.id;toast(t('equipped'))}
-      else toast(lang==='tr'?'Ödeme sistemi yakında!':'Payment coming soon!');
+      else toast(tl()?'Ödeme sistemi yakında!':'Payment coming soon!');
     };
     premGrid.appendChild(c);
   });
@@ -1692,10 +1718,10 @@ function renderShop(){
   // Season pass section
   const spSection=document.createElement('div');
   spSection.style.cssText='margin-top:12px;background:linear-gradient(135deg,#7B1FA2,#4A148C);border-radius:14px;padding:14px;color:#fff';
-  const perks=lang==='tr'?SEASON_PASS.perks_tr:SEASON_PASS.perks_en;
-  spSection.innerHTML=`<div style="font-family:Fredoka;font-size:16px;font-weight:700;margin-bottom:4px">👑 ${lang==='tr'?SEASON_PASS.name_tr:SEASON_PASS.name_en}</div>
+  const perks=tl()?SEASON_PASS.perks_tr:SEASON_PASS.perks_en;
+  spSection.innerHTML=`<div style="font-family:Fredoka;font-size:16px;font-weight:700;margin-bottom:4px">👑 ${tl()?SEASON_PASS.name_tr:SEASON_PASS.name_en}</div>
   <div style="font-size:11px;opacity:0.8;margin-bottom:8px">${perks.map(p=>'✓ '+p).join(' · ')}</div>
-  <button onclick="toast('${lang==='tr'?'Yakında!':'Coming soon!'}')" style="background:#FFD700;color:#333;border:none;padding:8px 20px;border-radius:10px;font-family:Fredoka;font-size:13px;font-weight:700;cursor:pointer;width:100%">${SEASON_PASS.price} - ${lang==='tr'?'Abone Ol':'Subscribe'}</button>`;
+  <button onclick="toast('${tl()?'Yakında!':'Coming soon!'}')" style="background:#FFD700;color:#333;border:none;padding:8px 20px;border-radius:10px;font-family:Fredoka;font-size:13px;font-weight:700;cursor:pointer;width:100%">${SEASON_PASS.price} - ${tl()?'Abone Ol':'Subscribe'}</button>`;
   g.appendChild(spSection);
 }
 
