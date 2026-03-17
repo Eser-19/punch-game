@@ -435,12 +435,12 @@ function drawScene(){
   });
   
   // ===== PLUSH TOY (drawn first, behind Punch or in arms) =====
-  const pX=W*.5, pY=H*.55; // Punch center
+  const pX=W*.5, pY=H*.58; // Punch center
   const isHug=(S.hunger<30||S.happy<30||S.energy<20)&&!S.sleeping;
   
   if(!isHug){
     // Plush in Punch's right hand/lap
-    drawPlush(pX+W*.08, pY+H*.06, .6);
+    drawPlush(pX+W*.12, pY+H*.08, .8);
   }
   
   // ===== PUNCH (BIG, CLOSE) =====
@@ -448,7 +448,7 @@ function drawScene(){
   
   if(isHug){
     // Plush hugged in front
-    drawPlush(pX, pY+H*.07, .55);
+    drawPlush(pX, pY+H*.09, .75);
   }
   
   // Friend
@@ -469,7 +469,7 @@ function drawScene(){
 
 function drawPlush(px,py,sc){
   cx.save();cx.translate(px,py);
-  const s=Math.min(W,H)*.0012*sc;
+  const s=Math.min(W,H)*.0018*sc;
   // Body
   cx.fillStyle='#E65100';cx.beginPath();cx.ellipse(0,10*s,35*s,20*s,0,0,Math.PI*2);cx.fill();
   cx.fillStyle='#EF6C00';cx.beginPath();cx.ellipse(0,10*s,30*s,17*s,0,0,Math.PI*2);cx.fill();
@@ -506,7 +506,7 @@ function drawPlush(px,py,sc){
 function drawPunch(px,py,isHug){
   cx.save();cx.translate(px,py);
   const sc=STAGES[S.stage].sc;cx.scale(sc,sc);
-  const s=Math.min(W,H)*.0014; // BIGGER base unit
+  const s=Math.min(W,H)*.0025; // MUCH BIGGER
   const bob=Math.sin(aT*1.8)*3*s;
   cx.translate(0,bob);
   
@@ -1737,8 +1737,8 @@ function decay(){
 // ==================== PET ====================
 cv.addEventListener('click',e=>{
   if(S.sleeping||S.bullyOn)return;
-  const px=W*.5,py2=H*.55,dx=e.clientX-px,dy=e.clientY-py2;
-  if(Math.sqrt(dx*dx+dy*dy)<W*.15){
+  const px=W*.5,py2=H*.58,dx=e.clientX-px,dy=e.clientY-py2;
+  if(Math.sqrt(dx*dx+dy*dy)<W*.2){
     S.happy=Math.min(100,S.happy+3);S.xp+=1;S.totalPet++;updHUD();
     fp('❤️',e.clientX,e.clientY);spch(S.happy>70?'love':'happy_s');
   }
