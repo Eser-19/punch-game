@@ -409,7 +409,7 @@ function drawScene(){
   }
   
   // Ground
-  const gy=H*.62;
+  const gy=H*.55;
   const gg=cx.createLinearGradient(0,gy,0,H);
   gg.addColorStop(0,'#8BC34A');gg.addColorStop(.5,'#7CB342');gg.addColorStop(1,'#558B2F');
   cx.fillStyle=gg;cx.beginPath();
@@ -435,20 +435,19 @@ function drawScene(){
   });
   
   // ===== PLUSH TOY (drawn first, behind Punch or in arms) =====
-  const pX=W*.5, pY=H*.58; // Punch center
+  const pX=W*.5, pY=gy-H*.02; // Punch sits ON ground
   const isHug=(S.hunger<30||S.happy<30||S.energy<20)&&!S.sleeping;
   
   if(!isHug){
     // Plush in Punch's right hand/lap
-    drawPlush(pX+W*.12, pY+H*.08, .8);
+    drawPlush(pX+W*.12, pY+H*.05, .9);
   }
   
   // ===== PUNCH (BIG, CLOSE) =====
   drawPunch(pX, pY, isHug);
   
   if(isHug){
-    // Plush hugged in front
-    drawPlush(pX, pY+H*.09, .75);
+    drawPlush(pX, pY+H*.06, .85);
   }
   
   // Friend
@@ -469,7 +468,8 @@ function drawScene(){
 
 function drawPlush(px,py,sc){
   cx.save();cx.translate(px,py);
-  const s=Math.min(W,H)*.0018*sc;
+  const isPortrait=H>W;
+  const s=(isPortrait ? W*.003 : H*.0022)*sc;
   // Body
   cx.fillStyle='#E65100';cx.beginPath();cx.ellipse(0,10*s,35*s,20*s,0,0,Math.PI*2);cx.fill();
   cx.fillStyle='#EF6C00';cx.beginPath();cx.ellipse(0,10*s,30*s,17*s,0,0,Math.PI*2);cx.fill();
@@ -506,7 +506,9 @@ function drawPlush(px,py,sc){
 function drawPunch(px,py,isHug){
   cx.save();cx.translate(px,py);
   const sc=STAGES[S.stage].sc;cx.scale(sc,sc);
-  const s=Math.min(W,H)*.0025; // MUCH BIGGER
+  // Use height on portrait, width on landscape — always big
+  const isPortrait=H>W;
+  const s=isPortrait ? W*.004 : H*.003;
   const bob=Math.sin(aT*1.8)*3*s;
   cx.translate(0,bob);
   
@@ -1737,8 +1739,8 @@ function decay(){
 // ==================== PET ====================
 cv.addEventListener('click',e=>{
   if(S.sleeping||S.bullyOn)return;
-  const px=W*.5,py2=H*.58,dx=e.clientX-px,dy=e.clientY-py2;
-  if(Math.sqrt(dx*dx+dy*dy)<W*.2){
+  const px=W*.5,gy2=H*.55,py2=gy2-H*.02,dx=e.clientX-px,dy=e.clientY-py2;
+  if(Math.sqrt(dx*dx+dy*dy)<W*.22){
     S.happy=Math.min(100,S.happy+3);S.xp+=1;S.totalPet++;updHUD();
     fp('❤️',e.clientX,e.clientY);spch(S.happy>70?'love':'happy_s');
   }
