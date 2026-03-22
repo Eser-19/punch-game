@@ -437,7 +437,7 @@ function drawScene(){
   }
   
   // Ground
-  const gy=H*.72;
+  const gy=H*.78;
   const gg=cx.createLinearGradient(0,gy,0,H);
   gg.addColorStop(0,'#8BC34A');gg.addColorStop(.5,'#7CB342');gg.addColorStop(1,'#558B2F');
   cx.fillStyle=gg;cx.beginPath();
@@ -462,18 +462,31 @@ function drawScene(){
     cx.beginPath();cx.arc(W*.08+i*W*.14+Math.sin(i*3)*W*.02,gy+H*.01+Math.sin(i*2)*H*.003,2.5,0,Math.PI*2);cx.fill();
   });
   
-  // ===== PUNCH — BIG, centered, feet on ground =====
-  const pX=W*.5, pY=gy-H*.18;
+  // ===== PUNCH — DYNAMIC SIZE & POSITION =====
+  // Punch's feet are at +77*s from center, head at -50*s
+  // With stage scale applied, feet = 77*s*sc, head = 50*s*sc
+  // We want feet to sit ON the ground (gy)
+  const sc=STAGES[S.stage].sc;
+  const baseS=H/150; // base unit
+  const feetOffset=77*baseS*sc; // how far feet are below center
+  const headOffset=50*baseS*sc; // how far head is above center
+  // Punch center: position so feet touch ground minus a small margin
+  const pX=W*.5;
+  const pY=gy-feetOffset-H*.01;
+  // Safety: make sure head doesn't go above stat bars (H*0.09)
+  const minPY=H*.09+headOffset;
+  const finalPY=Math.max(pY, minPY);
+  
   const isHug=(S.hunger<30||S.happy<30||S.energy<20)&&!S.sleeping;
   
   if(!isHug){
-    drawPlush(pX+W*.16, pY+H*.08, 1.1);
+    drawPlush(pX+35*baseS*sc, finalPY+40*baseS*sc, sc*.9);
   }
   
-  drawPunch(pX, pY, isHug);
+  drawPunch(pX, finalPY, isHug);
   
   if(isHug){
-    drawPlush(pX+W*.02, pY+H*.08, 1);
+    drawPlush(pX, finalPY+45*baseS*sc, sc*.9);
   }
   
   // Friend
@@ -485,8 +498,8 @@ function drawScene(){
   
   // Sick indicator
   if(S.sick){
-    cx.font=`${Math.min(W,H)*.05}px serif`;
-    cx.fillText('🤒', pX+W*.08, pY-H*.1);
+    cx.font=`${Math.min(W,H)*.06}px serif`;
+    cx.fillText('🤒', pX+20*baseS*sc, finalPY-headOffset-10);
   }
   
   requestAnimationFrame(drawScene);
@@ -494,7 +507,7 @@ function drawScene(){
 
 function drawPlush(px,py,sc){
   cx.save();cx.translate(px,py);
-  const s=(H/160)*sc;
+  const s=(H/180)*sc;
   // Body
   cx.fillStyle='#E65100';cx.beginPath();cx.ellipse(0,10*s,35*s,20*s,0,0,Math.PI*2);cx.fill();
   cx.fillStyle='#EF6C00';cx.beginPath();cx.ellipse(0,10*s,30*s,17*s,0,0,Math.PI*2);cx.fill();
@@ -531,8 +544,8 @@ function drawPlush(px,py,sc){
 function drawPunch(px,py,isHug){
   cx.save();cx.translate(px,py);
   const sc=STAGES[S.stage].sc;cx.scale(sc,sc);
-  // BASE UNIT — Punch fills ~55% of screen
-  const s=H/130;
+  // BASE UNIT — must match drawScene position calc (H/150)
+  const s=H/150;
   const bob=Math.sin(aT*1.8)*3*s;
   cx.translate(0,bob);
   
@@ -775,7 +788,7 @@ function renderMkt(){
         const dropY=pt.clientY;
         dragEl.remove();dragEl=null;
         // Feed if dropped in upper half (Punch area)
-        if(dropY<H*0.72){doFeed(dragFood)}
+        if(dropY<H*0.78){doFeed(dragFood)}
         else{/* dropped too low, re-open market */ sTab('market')}
       };
       c.addEventListener('touchstart',onStart,{passive:true});
@@ -1766,8 +1779,13 @@ function decay(){
 // ==================== PET ====================
 cv.addEventListener('click',e=>{
   if(S.sleeping||S.bullyOn)return;
-  const px=W*.5,gy2=H*.72,py2=gy2-H*.18,dx=e.clientX-px,dy=e.clientY-py2;
-  if(Math.sqrt(dx*dx+dy*dy)<Math.min(W,H)*.25){
+  const sc=STAGES[S.stage].sc;
+  const baseS=H/150;
+  const feetOff=77*baseS*sc;
+  const headOff=50*baseS*sc;
+  const gy2=H*.78;  const py2=Math.max(gy2-feetOff-H*.01, H*.09+headOff);
+  const px=W*.5,dx=e.clientX-px,dy=e.clientY-py2;
+  if(Math.sqrt(dx*dx+dy*dy)<feetOff*1.2){
     S.happy=Math.min(100,S.happy+3);S.xp+=1;S.totalPet++;updHUD();
     fp('❤️',e.clientX,e.clientY);spch(S.happy>70?'love':'happy_s');
   }
